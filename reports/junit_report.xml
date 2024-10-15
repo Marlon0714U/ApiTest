@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<testsuite failures="9" skipped="0" name="cucumber-js" time="8.471575559" tests="24">
+  <testcase classname="Creación de logs" name="Registrar un log exitosamente" time="0.0008903">
+    <failure/>
+    <system-out><![CDATA[Given tengo los datos de un nuevo log generado por la aplicación "Ap...undefined
+When hago una solicitud POST a "/logs".................................undefined
+Then la respuesta debería tener un código de estado 201..................skipped
+And el log debería estar registrado correctamente en el sistema........undefined]]></system-out>
+  </testcase>
+  <testcase classname="Creación de logs" name="Registrar un log con datos incompletos" time="0.0000536">
+    <failure/>
+    <system-out><![CDATA[Given tengo los datos de un log generado por la aplicación "App1" si...undefined
+When hago una solicitud POST a "/logs".................................undefined
+Then la respuesta debería tener un código de estado 400..................skipped
+And no debería registrarse el log en el sistema........................undefined]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por rango de fecha de generación" time="0.000039599">
+    <failure/>
+    <system-out><![CDATA[Given existen logs registrados en el sistema...........................undefined
+When hago una solicitud GET a "/logs?startDate=2024-01-01&endDate=2024...skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And todos los logs deberían haber sido generados dentro del rango de...undefined]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por tipo de log" time="0.000038699">
+    <failure/>
+    <system-out><![CDATA[Given existen logs registrados en el sistema con diferentes tipos de...undefined
+When hago una solicitud GET a "/logs?type=error".........................skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And la lista de logs debería contener solo logs con tipo "error".......undefined]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por aplicación que los genera" time="0.0000416">
+    <failure/>
+    <system-out><![CDATA[Given existen logs registrados en el sistema por diferentes aplicaci...undefined
+When hago una solicitud GET a "/logs?appName=App1".......................skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And la lista de logs debería contener solo logs generados por la apl...undefined]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por rango de fechas y tipo de log" time="0.0000403">
+    <failure/>
+    <system-out><![CDATA[Given existen logs registrados en el sistema...........................undefined
+When hago una solicitud GET a "/logs?startDate=2024-01-01&endDate=2024...skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And todos los logs deberían haber sido generados dentro del rango de...undefined
+And la lista de logs debería contener solo logs con tipo "warning".....undefined]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por aplicación y tipo de log" time="0.000037599">
+    <failure/>
+    <system-out><![CDATA[Given existen logs registrados en el sistema por diferentes aplicaci...undefined
+When hago una solicitud GET a "/logs?appName=App1&type=info".............skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And la lista de logs debería contener solo logs generados por la apl...undefined]]></system-out>
+  </testcase>
+  <testcase classname="Obtener logs con paginación" name="Obtener los logs registrados ordenados" time="0.000039499">
+    <failure/>
+    <system-out><![CDATA[Given existen logs registrados en el sistema...........................undefined
+When hago una solicitud GET a "/logs"....................................skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And los logs deberían estar ordenados por fecha de creación descende...undefined
+And la respuesta debería incluir un máximo de 10 logs..................undefined]]></system-out>
+  </testcase>
+  <testcase classname="Obtener logs con paginación" name="Obtener una página de logs" time="0.0000748">
+    <failure/>
+    <system-out><![CDATA[Given existen más de 10 logs registrados en el sistema.................undefined
+When hago una solicitud GET a "/logs?page=2&pageSize=10".................skipped
+Then la respuesta debería tener un código de estado 200..................skipped
+And la respuesta debería incluir la segunda página de logs.............undefined]]></system-out>
+  </testcase>
+  <testcase classname="La API de usuarios permite la creación y registro de un usuario nuevo" name="Crear un usuario exitosamente" time="0.278509298">
+    <system-out><![CDATA[Given Tengo los datos correspondientes al username, email y password de...passed
+When hago una solicitud POST a "/users" con estos datos...................passed
+Then la respuesta debería tener un código de estado 201...................passed
+And la respuesta debería incluir los detalles del nuevo usuario...........passed]]></system-out>
+  </testcase>
+  <testcase classname="La API de usuarios permite la creación y registro de un usuario nuevo" name="Intentar crear un usuario con datos inválidos" time="0.024787298">
+    <system-out><![CDATA[Given Tengo los datos invalidos correspondientes al username, email y p...passed
+When hago una solicitud POST a "/users" con estos datos...................passed
+Then la respuesta debería tener un código de estado 409...................passed
+And la respuesta debería incluir un mensaje de error......................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite que el usuario autenticado pueda eliminarse" name="Eliminar mi cuenta exitosamente" time="0.4621787990000001">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud DELETE a "/users/" acompañada de la id de mi us...passed
+Then la respuesta debería tener un código de estado 204...................passed
+And mi cuenta debería haber sido eliminada del sistema....................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite que el usuario autenticado pueda eliminarse" name="Intentar eliminar la cuenta de otro usuario" time="0.46124409600000005">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud DELETE a "/users/"................................passed
+Then la respuesta debería tener un código de estado 403...................passed
+And la respuesta debería incluir un "Acceso denegado".....................passed]]></system-out>
+  </testcase>
+  <testcase classname="Obtener detalles de un usuario" name="Obtener detalles del usuario exitosamente" time="0.46262929699999994">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud GET a "/users/" acompañada de mi id publica.......passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la respuesta debería incluir los detalles de mi usuario...............passed]]></system-out>
+  </testcase>
+  <testcase classname="Obtener detalles de un usuario" name="Intentar obtener detalles de otro usuario" time="0.453218999">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud GET buscando la id de otro usuario a "/users/"....passed
+Then la respuesta debería tener un código de estado 403...................passed
+And la respuesta debería incluir un "Acceso denegado".....................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API de usuarios permite la atennticacion de un usuario registrado" name="Como usuario puedo autenticarme y acceder a las funcionalidades" time="0.44762189699999994">
+    <system-out><![CDATA[Given soy un usuario registrado con datos validos.........................passed
+When hago una solicitud POST a /login.....................................passed
+Then obtengo un status 200................................................passed
+And un token de autenticacion.............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API de usuarios permite la atennticacion de un usuario registrado" name="Intentar autenticar con credenciales incorrectas" time="0.004954396">
+    <system-out><![CDATA[Given tengo las siguientes credenciales incorrectas:......................passed
+When hago una solicitud POST a "/login" con estas credenciales............passed
+Then la respuesta debería tener un código de estado 401...................passed
+And la respuesta debería incluir un "Credenciales incorrectas"............passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite enviar un correo de recuperación para la contraseña" name="Enviar instrucciones para recuperar contraseña" time="4.029421197">
+    <system-out><![CDATA[Given soy un usuario registrado con datos validos.........................passed
+When hago una solicitud POST a "/password" con este correo................passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la respuesta debería incluir un "Se ha enviado un correo con las in...passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite enviar un correo de recuperación para la contraseña" name="Intentar restablecer contraseña con un token inválido" time="0.006155599">
+    <system-out><![CDATA[Given tengo un correo no registrado "user111118@example.com"..............passed
+When hago una solicitud POST a "/password" con este correo................passed
+Then la respuesta debería tener un código de estado 404...................passed
+And la respuesta debería incluir un "Correo no registrado"................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite que el usuario autenticado actualice sus datos" name="Actualizar mi cuenta exitosamente" time="0.46503179600000005">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud de actualizacion de datos.........................passed
+Then la respuesta debería tener un código de estado 200...................passed
+And los detalles de mi cuenta deberían actualizarse correctamente.........passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite que el usuario autenticado actualice sus datos" name="Intentar actualizar la cuenta de otro usuario" time="0.464110099">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud de actualizacion de datos a "/users/d06bbc3a-36...passed
+Then la respuesta debería tener un código de estado 403...................passed
+And la respuesta debería incluir un "Acceso denegado".....................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API permite que el usuario autenticado actualice sus datos" name="Intentar actualizar una cuenta que no existe" time="0.453698998">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud PUT a "/users/123456789"..........................passed
+Then la respuesta debería tener un código de estado 403...................passed
+And la respuesta debería incluir un "Acceso denegado".....................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API de usuarios permite a un usuario registrado observar la lista de usuarios" name="Como usuario autenticado puedo acceder a la lista de usuarios registrados" time="0.45237709600000003">
+    <system-out><![CDATA[Given soy un usuario autenticado con un token valido......................passed
+When hago una solicitud GET a "/users"....................................passed
+Then obtengo un status 200................................................passed
+And una lista de usuarios.................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="La API de usuarios permite a un usuario registrado observar la lista de usuarios" name="Intentar listar usuarios sin estar autenticado" time="0.004380698000000001">
+    <system-out><![CDATA[When hago una solicitud GET a "/users"....................................passed
+Then la respuesta debería tener un código de estado 401...................passed
+And la respuesta debería incluir un "Could not validate credentials"......passed]]></system-out>
+  </testcase>
+</testsuite>

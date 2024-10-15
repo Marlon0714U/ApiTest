@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<testsuite failures="0" skipped="0" name="cucumber-js" time="0.313449693" tests="2">
+  <testcase classname="Integración del sistema de usuarios con el sistema de logs" name="Crear un usuario exitosamente y verificar que se registre un log" time="0.285179297">
+    <system-out><![CDATA[Given Tengo los datos correspondientes al username, email y password de...passed
+When hago una solicitud POST a "/users" con estos datos...................passed
+Then la respuesta debería tener un código de estado 201...................passed
+And debería haberse registrado un log con tipo "INFO".....................passed]]></system-out>
+  </testcase>
+  <testcase classname="Integración del sistema de usuarios con el sistema de logs" name="Recuperar la contraseña de un usuario inexistente y registrar un log" time="0.028270395999999996">
+    <system-out><![CDATA[Given No existe un usuario registrado con el correo "noexiste@example.c...passed
+When hago una solicitud POST a "/password" con el correo "noexiste@exam...passed
+Then la respuesta debería tener un código de estado 500...................passed
+And debería haberse registrado un log con tipo "WARNING"..................passed]]></system-out>
+  </testcase>
+</testsuite>

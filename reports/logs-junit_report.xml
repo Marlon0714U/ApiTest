@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<testsuite failures="0" skipped="0" name="cucumber-js" time="0.09860118" tests="9">
+  <testcase classname="Creación de logs" name="Registrar un log exitosamente" time="0.021128596">
+    <system-out><![CDATA[Given tengo los datos de un nuevo log generado por la aplicación "App1"...passed
+When hago una solicitud POST a "/logs"....................................passed
+Then la respuesta debería tener un código de estado 201...................passed
+And el log debería estar registrado correctamente en el sistema...........passed]]></system-out>
+  </testcase>
+  <testcase classname="Creación de logs" name="Registrar un log con datos incompletos" time="0.012559198">
+    <system-out><![CDATA[Given tengo los datos de un log generado por la aplicación "App1" sin e...passed
+When hago una solicitud POST a "/logs"....................................passed
+Then la respuesta debería tener un código de estado 400...................passed
+And no debería registrarse el log en el sistema...........................passed]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por rango de fecha de generación" time="0.010464697">
+    <system-out><![CDATA[Given existen logs registrados en el sistema..............................passed
+When hago una solicitud GET a "/logs?startDate=2024-10-01&endDate=2024-...passed
+Then la respuesta debería tener un código de estado 200...................passed
+And todos los logs deberían haber sido generados dentro del rango de fe...passed]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por tipo de log" time="0.009118097999999998">
+    <system-out><![CDATA[Given existen logs registrados en el sistema..............................passed
+When hago una solicitud GET a "/logs?logType=Error".......................passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la lista de logs debería contener solo logs con tipo "error"..........passed]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por aplicación que los genera" time="0.009633398000000001">
+    <system-out><![CDATA[Given existen logs registrados en el sistema..............................passed
+When hago una solicitud GET a "/logs?application=App1"....................passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la lista de logs debería contener solo logs generados por la aplica...passed]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por rango de fechas y tipo de log" time="0.010333300000000002">
+    <system-out><![CDATA[Given existen logs registrados en el sistema..............................passed
+When hago una solicitud GET a "/logs?startDate=2024-10-01&endDate=2024-...passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la lista de logs debería contener solo logs con tipo "error"..........passed
+And todos los logs deberían haber sido generados dentro del rango de fe...passed]]></system-out>
+  </testcase>
+  <testcase classname="Filtrar logs" name="Filtrar logs por aplicación y tipo de log" time="0.0093095">
+    <system-out><![CDATA[Given existen logs registrados en el sistema..............................passed
+When hago una solicitud GET a "/logs?application=App1&logType=error"......passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la lista de logs debería contener solo logs generados por la aplica...passed]]></system-out>
+  </testcase>
+  <testcase classname="Obtener logs con paginación" name="Obtener los logs registrados ordenados" time="0.010560797">
+    <system-out><![CDATA[Given existen logs registrados en el sistema..............................passed
+When hago una solicitud GET a "/logs".....................................passed
+Then la respuesta debería tener un código de estado 200...................passed
+And los logs deberían estar ordenados por fecha de creación descendente...passed
+And la respuesta debería incluir un máximo de 10 logs.....................passed]]></system-out>
+  </testcase>
+  <testcase classname="Obtener logs con paginación" name="Obtener una página de logs" time="0.005493596">
+    <system-out><![CDATA[Given existen más de 10 logs registrados en el sistema....................passed
+When hago una solicitud GET a "/logs?page=2&pageSize=10"..................passed
+Then la respuesta debería tener un código de estado 200...................passed
+And la respuesta debería incluir la página numero "2" de logs.............passed]]></system-out>
+  </testcase>
+</testsuite>
